@@ -1,0 +1,19 @@
+.textRed {
+	color: red;
+}
+
+.bgGrren {
+	background-color: green;
+}
+
+.customCard {
+    /* sort alphabetically */
+	background-color: brown;
+	color: yellow;
+	margin: 30px 50px 80px 70px;
+	text-align: center;
+}
+
+.text-primary{
+    color: red;
+}
