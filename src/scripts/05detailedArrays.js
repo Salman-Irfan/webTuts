@@ -51,9 +51,25 @@ console.log(person.outlines[1].oop[0])
 
 // code evolution => js dsa playlist
 
-const personName = document.getElementById(`personName`)
-console.log(personName)
+const personName = document.getElementById(`personName`);
 personName.innerHTML = `
-    <h1 class = "bg-blue-200 text-blue-800">${person.name}</h1>
-    <h3>${person.courses}</h3>
-`
+    <h1 class="bg-blue-200 text-blue-800 p-4 rounded-lg shadow-md">${person.name}</h1>
+`;
+
+const detailedOutline = document.getElementById(`detailedOutline`);
+
+const coursesContainer = document.createElement("div");
+
+coursesContainer.classList.add("flex", "gap-2", "mt-4", "flex-wrap");
+
+person.courses.forEach(course => {
+    const courseElement = document.createElement("span");
+    courseElement.classList.add("bg-green-200", "text-green-800", "px-4", "py-2", "rounded-lg", "shadow-sm", "text-sm", "font-semibold");
+    courseElement.textContent = course;
+    coursesContainer.appendChild(courseElement);
+});
+
+detailedOutline.appendChild(coursesContainer);
+
+
+console.log(document)
