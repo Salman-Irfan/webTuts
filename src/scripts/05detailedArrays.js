@@ -59,17 +59,21 @@ personName.innerHTML = `
 const detailedOutline = document.getElementById(`detailedOutline`);
 
 const coursesContainer = document.createElement("div");
-
 coursesContainer.classList.add("flex", "gap-2", "mt-4", "flex-wrap");
 
-person.courses.forEach(course => {
+// Using map() to create an array of elements and appending them efficiently
+const courseElements = person.courses.map(course => {
     const courseElement = document.createElement("span");
     courseElement.classList.add("bg-green-200", "text-green-800", "px-4", "py-2", "rounded-lg", "shadow-sm", "text-sm", "font-semibold");
     courseElement.textContent = course;
-    coursesContainer.appendChild(courseElement);
+    return courseElement;
 });
 
+// Append all course elements at once using spread syntax
+coursesContainer.append(...courseElements);
+
 detailedOutline.appendChild(coursesContainer);
+
 
 
 console.log(document)
