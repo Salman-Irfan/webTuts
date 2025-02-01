@@ -77,3 +77,7 @@ detailedOutline.appendChild(coursesContainer);
 
 
 console.log(document)
+
+
+const nums = [4, 7, 2, 9, 10]
+// apply map on this array method and multiply these array element swith 2
