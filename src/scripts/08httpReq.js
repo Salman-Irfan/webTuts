@@ -6,7 +6,7 @@ console.log(line2)
 
 const fetchGeoData = async () => {
     const other = await fetch(`https://www.geo.tv/`) // 5s
-    console.log(other)
+    // console.log(other)
 }
 
 fetchGeoData()
