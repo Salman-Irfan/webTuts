@@ -1,25 +1,16 @@
-// const baseurl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-// const result = document.getElementById("word-info");
-// const sound = document.getElementById("sound");
-// const btn = document.getElementById("inputbtn");
-
 const baseurl = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const result = document.getElementById("word-info");
 const sound = document.getElementById("sound");
 const btn = document.getElementById("inputbtn");
 
-
-
-btn.addEventListener("click", async () => {
+const handleDictionarySynonyms = async () => {
 
     let inpWord = document.getElementById("input-word").value;
     console.log("input word: ", inpWord);
 
     try {
         const response = await axios.get(`${baseurl}${inpWord}`);
-        console.log(response);
         const data = response.data; // Axios automatically parses JSON
-        console.log(data);
 
         result.innerHTML = `
             <div class="flex justify-between items-center">
@@ -45,7 +36,7 @@ btn.addEventListener("click", async () => {
         if (audioSrc) {
             sound.setAttribute("src", `https:${audioSrc}`);
         }
-        audioBtn.addEventListener("click", ()=>{
+        audioBtn.addEventListener("click", () => {
             console.log(`audio btn got clicked `)
             const textToSpeech = new SpeechSynthesisUtterance(inpWord)
             window.speechSynthesis.speak(textToSpeech)
@@ -55,8 +46,7 @@ btn.addEventListener("click", async () => {
         console.log("Error fetching data: ", error);
         result.innerHTML = "No such word found!";
     }
-});
+}
 
-// function playsound() {
-//     sound.play();
-// }
+btn.addEventListener("click", handleDictionarySynonyms);
+
