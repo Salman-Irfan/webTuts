@@ -4,9 +4,22 @@
 // console.log(productListsResponse)
 // console.log(response2)
 
-console.log(`testngi`)
+console.log(`testing`)
 const name = document.getElementById("name")
 
 name.addEventListener("keydown", (e)=>{
     console.log(e.key)
 })
+
+// const obj = {
+//     name: `salman`,
+//     address: {
+//         country: "pakistan"
+//     }
+// }
+const obj = {
+    name: `salman`,
+    country: "pakistan"
+}
+// console.log(obj.address.country)
+console.log(obj.address?.country)
