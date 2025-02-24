@@ -11,6 +11,9 @@ import About from './components/pages/About'
 import Contact from './components/pages/Contact'
 import Navbar from './components/layouts/Navbar'
 import Footer from './components/layouts/Footer'
+import PageNotFound from './components/pages/PageNotFound'
+import UseEffectDemo from './components/pages/UseEffectDemo'
+import FreeJsonApis from './components/pages/FreeJsonApis'
 
 const App = () => {
   return (
@@ -21,6 +24,9 @@ const App = () => {
         <Route exact path='/' element={<Home/>} />
         <Route exact path='/about' element={<About/>} />
         <Route exact path='/contact' element={<Contact/>} />
+        <Route exact path='/use-effect-demo' element={<UseEffectDemo/>} />
+        <Route exact path='/free-json-apis' element={<FreeJsonApis/>} />
+        <Route exact path='*' element={<PageNotFound/>} />
       </Routes>
       <Footer/>
     </>

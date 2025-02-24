@@ -12,6 +12,8 @@ const Navbar = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/use-effect-demo">Use Effect Demo</Link></li>
+                    <li><Link to="/free-json-apis">Free Json APIs</Link></li>
                     <p>{cartCounter}</p>
                     <p>{counter}</p>
                 </ul>
