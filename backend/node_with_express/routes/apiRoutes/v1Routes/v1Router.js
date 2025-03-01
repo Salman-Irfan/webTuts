@@ -1,6 +1,6 @@
 import express from 'express';
-import { homeController } from '../../../controllers/homeController.js';
-import { aboutController } from '../../../controllers/aboutController.js';
+import { homeController } from '../../../controllers/v1Controllers/homeController.js';
+import { aboutController } from '../../../controllers/v1Controllers/aboutController.js';
 import { adminRouter } from './adminRoutes/adminRouter.js';
 export const v1Router = express.Router();
 
