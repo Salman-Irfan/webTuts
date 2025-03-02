@@ -1,10 +1,13 @@
 import express from 'express'
 import cors from "cors"
 import { apiRouter } from './routes/apiRoutes/apiRouter.js'
+import { connectToMongoDb } from './config/mongoDbConfig/connectToMongoDb.js'
 
 export let data = `about page data`
 
 const app = express()
+
+connectToMongoDb()
 
 app.use(cors())
 app.use(express.json())
