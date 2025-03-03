@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import HeroSection from './components/views/homeViews/HeroSection'
 import Testimonials from './components/views/homeViews/Testimonials'
 import Featured from './components/views/homeViews/Featured'
@@ -14,11 +14,20 @@ import Footer from './components/layouts/Footer'
 import PageNotFound from './components/pages/PageNotFound'
 import UseEffectDemo from './components/pages/UseEffectDemo'
 import FreeJsonApis from './components/pages/FreeJsonApis'
+import AddGroceryItem from './components/pages/AddGroceryItem'
+import AllGroceryItems from './components/pages/AllGroceryItems'
 
 const App = () => {
+  const [count, setCount] = useState(10)
+  
+  const handleIncrement = () => {
+    setCount(count+1)
+  }
   return (
     <>
       {/* single page routing */}
+      {count}
+      <button onClick={handleIncrement}>Increment</button>
       <Navbar/>
       <Routes>
         <Route exact path='/' element={<Home/>} />
@@ -26,6 +35,8 @@ const App = () => {
         <Route exact path='/contact' element={<Contact/>} />
         <Route exact path='/use-effect-demo' element={<UseEffectDemo/>} />
         <Route exact path='/free-json-apis' element={<FreeJsonApis/>} />
+        <Route exact path='/add-grocery-item' element={<AddGroceryItem />} />
+        <Route exact path='/all-grocery-items' element={<AllGroceryItems />} />
         <Route exact path='*' element={<PageNotFound/>} />
       </Routes>
       <Footer/>
