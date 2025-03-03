@@ -1,4 +1,4 @@
-import { GroceryItem } from "../../../models/GroceryItemModel.js"
+import { GroceryItem } from "../../../../models/GroceryItemModel.js"
 
 export const addGroceryItemController = async (req, res) => {
     try {
