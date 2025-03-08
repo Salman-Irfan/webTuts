@@ -2,11 +2,11 @@ import { GroceryItem } from "../../../../models/GroceryItemModel.js"
 
 export const addGroceryItemController = async (req, res) => {
     try {
-        const { title, quantity, price, discount } = req.body
-        console.log(title, quantity, price, discount)
-
+        const { title, description, quantity, price, discount } = req.body
+        
         const groceryItem = new GroceryItem({
             title,
+            description,
             quantity,
             price,
             discount

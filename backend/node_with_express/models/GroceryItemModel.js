@@ -3,6 +3,7 @@ const { Schema } = mongoose;
 
 const groceryItemSchema = new Schema({
     title: String, // String is shorthand for {type: String}
+    description: String, // String is shorthand for {type: String}
     quantity: String,
     price: Number,
     discount: String,
