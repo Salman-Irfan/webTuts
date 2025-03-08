@@ -16,6 +16,7 @@ import UseEffectDemo from './components/pages/UseEffectDemo'
 import FreeJsonApis from './components/pages/FreeJsonApis'
 import AddGroceryItem from './components/pages/AddGroceryItem'
 import AllGroceryItems from './components/pages/AllGroceryItems'
+import SpecificGroceryItem from './components/pages/dynamicPages/SpecificGroceryItem'
 
 const App = () => {
   const [count, setCount] = useState(10)
@@ -37,6 +38,7 @@ const App = () => {
         <Route exact path='/free-json-apis' element={<FreeJsonApis/>} />
         <Route exact path='/add-grocery-item' element={<AddGroceryItem />} />
         <Route exact path='/all-grocery-items' element={<AllGroceryItems />} />
+        <Route exact path='/product/:id' element={<SpecificGroceryItem />} />
         <Route exact path='*' element={<PageNotFound/>} />
       </Routes>
       <Footer/>

@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const SpecificGroceryItem = () => {
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [dataItem, setDataItem] = useState(null);
+    const { id } = useParams();
+    const navigate = useNavigate(); // Hook for navigation
+
+    // Fetch Specific Grocery Item by ID
+    const fetchSpecificItem = async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:3000/api/v1/admin/product/${id}`);
+            setDataItem(response.data.data);
+        } catch (err) {
+            setError("Failed to fetch the grocery item.");
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchSpecificItem();
+    }, [id]);
+
+    return (
+        <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+            {/* Loading State */}
+            {loading ? (
+                <p className="text-center text-gray-500">Loading...</p>
+            ) : error ? (
+                <p className="text-center text-red-500">{error}</p>
+            ) : (
+                <div className="space-y-4">
+                    {/* Title */}
+                    <h2 className="text-3xl font-bold text-gray-800">{dataItem.title}</h2>
+
+                    {/* Description */}
+                    <p className="text-gray-600">{dataItem.description}</p>
+
+                    {/* Details Section */}
+                    <div className="flex flex-col space-y-2 bg-gray-100 p-4 rounded-lg">
+                        <p className="text-gray-700 font-medium">
+                            Quantity: <span className="font-bold">{dataItem.quantity}</span>
+                        </p>
+                        <p className="text-green-600 font-semibold text-lg">
+                            Price: <span>${dataItem.price}</span>
+                        </p>
+                        <p className="text-gray-500">
+                            Discount: <span className="text-red-500 font-medium">{dataItem.discount}</span>
+                        </p>
+                    </div>
+
+                    {/* CTA Buttons */}
+                    <div className="flex justify-between mt-4">
+                        <button
+                            className="w-1/2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+                        >
+                            Add to Cart
+                        </button>
+
+                        <button
+                            onClick={() => navigate(-1)} // Go back to previous page
+                            className="w-1/2 ml-2 bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition"
+                        >
+                            Go Back
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default SpecificGroceryItem;

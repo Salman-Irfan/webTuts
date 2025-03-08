@@ -37,10 +37,10 @@ const AllGroceryItems = () => {
                 <div className="grid md:grid-cols-2 gap-4">
                     {items.map((item) => (
                         <div key={item._id} className="bg-white p-4 rounded-lg shadow-md border hover:cursor-pointer hover:bg-zinc-100">
-                            <Link to={`/something-new`}>
+                            <Link to={`/product/${item._id}`}>
                                 <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
                                 <p className="text-gray-600">Quantity: {item.quantity}</p>
-                                <p className="text-gray-600">Description: {item.description.slice(0, 6)}... Read more </p>
+                                <p className="text-gray-600">Description: {item.description.slice(0, 6)}... <span className="text-blue-400 hover:text-blue-700" > Read more </span> </p>
                                 <p className="text-gray-700 font-medium">Price: <span className="text-green-600">${item.price}</span></p>
                                 <p className="text-gray-500">Discount: {item.discount}</p>
                             </Link>
