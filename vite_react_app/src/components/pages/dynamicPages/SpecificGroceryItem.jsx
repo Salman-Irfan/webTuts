@@ -26,6 +26,17 @@ const SpecificGroceryItem = () => {
         fetchSpecificItem();
     }, [id]);
 
+    // Delete Item and Navigate Back
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`http://127.0.0.1:3000/api/v1/admin/delete-product/${id}`);
+            navigate("/all-grocery-items"); // Redirect to the grocery list after deletion
+        } catch (error) {
+            console.error("Error deleting item:", error);
+            setError("Failed to delete item.");
+        }
+    };
+
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
             {/* Loading State */}
@@ -57,16 +68,24 @@ const SpecificGroceryItem = () => {
                     {/* CTA Buttons */}
                     <div className="flex justify-between mt-4">
                         <button
-                            className="w-1/2 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
+                            className="w-1/3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition"
                         >
                             Add to Cart
                         </button>
 
                         <button
                             onClick={() => navigate(-1)} // Go back to previous page
-                            className="w-1/2 ml-2 bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition"
+                            className="w-1/3 bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition"
                         >
                             Go Back
+                        </button>
+
+                        {/* Delete Button */}
+                        <button
+                            onClick={handleDelete}
+                            className="w-1/3 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition"
+                        >
+                            Delete Item
                         </button>
                     </div>
                 </div>
