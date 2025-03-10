@@ -74,6 +74,14 @@ const AllGroceryItems = () => {
                             >
                                 Delete Item
                             </button>
+                            <Link to={`/update-product/${item._id}`}>
+
+                                <button
+                                    className="bg-green-500 text-white w-full py-2 px-4 rounded-lg mt-3 hover:bg-green-600 transition hover:cursor-pointer"
+                                >
+                                    Edit
+                                </button>
+                            </Link>
                         </div>
                     ))}
                 </div>

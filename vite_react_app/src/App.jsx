@@ -17,6 +17,7 @@ import FreeJsonApis from './components/pages/FreeJsonApis'
 import AddGroceryItem from './components/pages/AddGroceryItem'
 import AllGroceryItems from './components/pages/AllGroceryItems'
 import SpecificGroceryItem from './components/pages/dynamicPages/SpecificGroceryItem'
+import UpdateProductById from './components/pages/dynamicPages/UpdateProductById'
 
 const App = () => {
   const [count, setCount] = useState(10)
@@ -39,6 +40,7 @@ const App = () => {
         <Route exact path='/add-grocery-item' element={<AddGroceryItem />} />
         <Route exact path='/all-grocery-items' element={<AllGroceryItems />} />
         <Route exact path='/product/:id' element={<SpecificGroceryItem />} />
+        <Route exact path='/update-product/:id' element={<UpdateProductById />} />
         <Route exact path='*' element={<PageNotFound/>} />
       </Routes>
       <Footer/>

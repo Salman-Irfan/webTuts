@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 const SpecificGroceryItem = () => {
@@ -88,6 +88,13 @@ const SpecificGroceryItem = () => {
                             Delete Item
                         </button>
                     </div>
+                    <Link to={`/update-product/${id}`}>
+                        <button
+                            className="w-1/3 bg-orange-700 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition"
+                        >
+                            Edit Item
+                        </button>
+                    </Link>
                 </div>
             )}
         </div>
