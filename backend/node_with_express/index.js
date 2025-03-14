@@ -2,10 +2,12 @@ import express from 'express'
 import cors from "cors"
 import { apiRouter } from './routes/apiRoutes/apiRouter.js'
 import { connectToMongoDb } from './config/mongoDbConfig/connectToMongoDb.js'
+import dotenv from "dotenv"
 
 export let data = `about page data`
 
 const app = express()
+dotenv.config()
 
 connectToMongoDb()
 
@@ -14,7 +16,7 @@ app.use(express.json())
 
 app.use(`/api`, apiRouter)
 
-const port = 3000
+const port = process.env.PORT || 3000
 
 // app.get('/api/', homeController)
 
