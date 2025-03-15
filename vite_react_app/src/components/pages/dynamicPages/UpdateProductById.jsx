@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { END_POINTS } from "../../../constants/urls";
 
 const UpdateProductById = () => {
     const { id } = useParams();
@@ -19,7 +20,7 @@ const UpdateProductById = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:3000/api/v1/admin/product/${id}`);
+                const response = await axios.get(`${END_POINTS.ADMIN.GET_PRODUCT_BY_ID(id)}`);
                 setFormData(response.data.data);
             } catch (err) {
                 setError("Failed to fetch product details.");
@@ -40,7 +41,7 @@ const UpdateProductById = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://127.0.0.1:3000/api/v1/admin/update-product/${id}`, formData);
+            await axios.put(`${END_POINTS.ADMIN.UPDATE_PRODUCT(id)}`, formData);
             alert("Product updated successfully!");
             navigate("/all-grocery-items");
         } catch (error) {

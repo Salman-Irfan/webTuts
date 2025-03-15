@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { END_POINTS } from "../../../constants/urls";
 
 const SpecificGroceryItem = () => {
     const [error, setError] = useState("");
@@ -12,7 +13,7 @@ const SpecificGroceryItem = () => {
     // Fetch Specific Grocery Item by ID
     const fetchSpecificItem = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:3000/api/v1/admin/product/${id}`);
+            const response = await axios.get(`${END_POINTS.ADMIN.GET_PRODUCT_BY_ID(id)}`);
             setDataItem(response.data.data);
         } catch (err) {
             setError("Failed to fetch the grocery item.");
@@ -29,7 +30,7 @@ const SpecificGroceryItem = () => {
     // Delete Item and Navigate Back
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://127.0.0.1:3000/api/v1/admin/delete-product/${id}`);
+            await axios.delete(`${END_POINTS.ADMIN.DELETE_PRODUCT(id)}`);
             navigate("/all-grocery-items"); // Redirect to the grocery list after deletion
         } catch (error) {
             console.error("Error deleting item:", error);

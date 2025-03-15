@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { END_POINTS } from "../../constants/urls";
 
 const AddGroceryItem = () => {
     const [formData, setFormData] = useState({
         title: "",
+        description: "",
         price: "",
         quantity: "",
         discount: "",
@@ -19,10 +21,7 @@ const AddGroceryItem = () => {
         console.log("Submitting Form Data:", formData);
 
         try {
-            const response = await axios.post(
-                "http://127.0.0.1:3000/api/v1/admin/add-grocery-item",
-                formData
-            );
+            const response = await axios.post( `${END_POINTS.ADMIN.ADD_GROCERY_ITEM}` ,formData);
             console.log("API Response:", response.data);
             alert("Grocery item added successfully!");
         } catch (error) {
@@ -42,6 +41,14 @@ const AddGroceryItem = () => {
                         type="text"
                         name="title"
                         placeholder="Item Name"
+                        onChange={handleChange}
+                        required
+                        className="p-2 border rounded"
+                    />
+                    <input
+                        type="text"
+                        name="description"
+                        placeholder="Description Name"
                         onChange={handleChange}
                         required
                         className="p-2 border rounded"
