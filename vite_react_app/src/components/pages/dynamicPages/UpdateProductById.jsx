@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { END_POINTS } from "../../../constants/urls";
+import { updateProductByIdService } from "../../../services/productServices/updateProductByIdService";
+import { fetchSpecificProductEffect } from "../../../services/productServices/displayEffect/fetchSpecificProductEffect";
 
 const UpdateProductById = () => {
     const { id } = useParams();
@@ -16,20 +16,9 @@ const UpdateProductById = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // Fetch existing product details
+    // Use effect only calls the function
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const response = await axios.get(`${END_POINTS.ADMIN.GET_PRODUCT_BY_ID(id)}`);
-                setFormData(response.data.data);
-            } catch (err) {
-                setError("Failed to fetch product details.");
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchProduct();
+        fetchSpecificProductEffect(id, setFormData, setError, setLoading);
     }, [id]);
 
     // Handle form change
@@ -41,11 +30,10 @@ const UpdateProductById = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`${END_POINTS.ADMIN.UPDATE_PRODUCT(id)}`, formData);
+            await updateProductByIdService(id, formData);
             alert("Product updated successfully!");
             navigate("/all-grocery-items");
         } catch (error) {
-            console.error("Error updating product:", error);
             alert("Failed to update product.");
         }
     };

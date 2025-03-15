@@ -2,35 +2,33 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BASE_URL, END_POINTS } from "../../constants/urls";
+import { fetchAllGroceryItemsService } from "../../services/fetchGroceryItemsService";
+import { deleteGroceryItemService } from "../../services/deleteGroceryItemService";
 
 const AllGroceryItems = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    // Fetch grocery items from API
-    const fetchAllGroceryItems = async () => {
-        try {
-            const response = await axios.get(`${END_POINTS.ADMIN.GET_ALL_GROCERY_ITEMS}`);
-            console.log(response)
-            setItems(response.data.data); // Store API data in state
-        } catch (err) {
-            setError("Failed to fetch grocery items.");
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
-        fetchAllGroceryItems();
+        const loadItems = async () => {
+            try {
+                const data = await fetchAllGroceryItemsService();
+                setItems(data);
+            } catch {
+                setError("Failed to fetch grocery items.");
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadItems();
     }, []);
 
     // Delete Item and Update UI
     const handleItemDelete = async (id) => {
         try {
-            await axios.delete(`${END_POINTS.ADMIN.DELETE_PRODUCT(id)}`);
-            setItems((prevItems) => prevItems.filter((item) => item._id !== id)); // Update state
+            await deleteGroceryItemService(id);
+            setItems((prev) => prev.filter((item) => item._id !== id));
         } catch (error) {
             console.error("Error deleting item:", error);
             setError("Failed to delete item.");

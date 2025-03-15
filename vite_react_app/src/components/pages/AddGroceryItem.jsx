@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { END_POINTS } from "../../constants/urls";
+import { addGroceryItemService } from "../../services/addGroceryItemService";
 
 const AddGroceryItem = () => {
     const [formData, setFormData] = useState({
@@ -21,8 +22,7 @@ const AddGroceryItem = () => {
         console.log("Submitting Form Data:", formData);
 
         try {
-            const response = await axios.post( `${END_POINTS.ADMIN.ADD_GROCERY_ITEM}` ,formData);
-            console.log("API Response:", response.data);
+            await addGroceryItemService(formData);
             alert("Grocery item added successfully!");
         } catch (error) {
             console.error("Error adding grocery item:", error);
