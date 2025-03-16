@@ -10,7 +10,8 @@ export const userSignUpController = async (req, res) => {
     if (existingUser) {
         return res.json({
             success: true,
-            message: `user with this email ${email} already exists`
+            message: `user with this email ${email} already exists`,
+            toastNotification: false
         })
     }
     // hashing the password
@@ -24,12 +25,14 @@ export const userSignUpController = async (req, res) => {
         email,
         password: hashedPassword
     })
-
+    
     const addedUser = await user.save()
     try {
         return res.json({
             success: true,
-            data: addedUser
+            message: "User signed up successfully!",
+            data: addedUser,
+            toastNotification: true
         })
     } catch (error) {
         console.log(error)
