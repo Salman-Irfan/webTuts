@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { fetchGroceryItemByIdService } from "../../../services/productServices/fetchGroceryItemByIdService";
-import { deleteGroceryItemByIdService } from "../../../services/deleteGroceryItemByIdService";
+import { deleteGroceryItemService } from "../../../services/productServices/deleteGroceryItemService";
 
 const SpecificGroceryItem = () => {
     const [error, setError] = useState("");
@@ -28,7 +28,7 @@ const SpecificGroceryItem = () => {
     // Delete Item and Navigate Back
     const handleDelete = async () => {
         try {
-            await deleteGroceryItemByIdService(id);
+            await deleteGroceryItemService(id);
             navigate("/all-grocery-items"); // Redirect to grocery list after deletion
         } catch (error) {
             setError("Failed to delete item.");

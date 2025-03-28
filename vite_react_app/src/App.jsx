@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
-import HeroSection from './components/views/homeViews/HeroSection'
-import Testimonials from './components/views/homeViews/Testimonials'
-import Featured from './components/views/homeViews/Featured'
-import DynamicTestimonials from './components/views/homeViews/DynamicTestimonials'
-import TopSellerWrapper from './components/views/homeViews/TopSellerWrapper'
-import TopSellerCard from './components/views/homeViews/TopSellerCard'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
@@ -18,6 +14,9 @@ import AddGroceryItem from './components/pages/AddGroceryItem'
 import AllGroceryItems from './components/pages/AllGroceryItems'
 import SpecificGroceryItem from './components/pages/dynamicPages/SpecificGroceryItem'
 import UpdateProductById from './components/pages/dynamicPages/UpdateProductById'
+import Signup from './components/pages/auth/SignUp'
+import Login from './components/pages/auth/Login'
+import Dashboard from './components/pages/Dashboard';
 
 const App = () => {
   const [count, setCount] = useState(10)
@@ -41,9 +40,17 @@ const App = () => {
         <Route exact path='/all-grocery-items' element={<AllGroceryItems />} />
         <Route exact path='/product/:id' element={<SpecificGroceryItem />} />
         <Route exact path='/update-product/:id' element={<UpdateProductById />} />
+
+        <Route exact path='/auth/signup' element={<Signup />} />
+        <Route exact path='/auth/login' element={<Login />} />
+        <Route exact path='/dashboard' element={<Dashboard />} />
+        
         <Route exact path='*' element={<PageNotFound/>} />
       </Routes>
       <Footer/>
+      {/* ✅ ToastContainer for toast notifications */}
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} closeOnClick pauseOnHover draggable
+      />
     </>
   )
 }

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { END_POINTS } from "../../constants/urls";
-import { addGroceryItemService } from "../../services/addGroceryItemService";
+import { addGroceryItemService } from "../../services/productServices/addGroceryItemService";
+
 
 const AddGroceryItem = () => {
     const [formData, setFormData] = useState({

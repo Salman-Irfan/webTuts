@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BASE_URL, END_POINTS } from "../../constants/urls";
-import { fetchAllGroceryItemsService } from "../../services/fetchGroceryItemsService";
-import { deleteGroceryItemService } from "../../services/deleteGroceryItemService";
+
+
+import { fetchAllGroceryItemsService } from "../../services/productServices/fetchGroceryItemsService";
+import { deleteGroceryItemService } from "../../services/productServices/deleteGroceryItemService";
 
 const AllGroceryItems = () => {
     const [items, setItems] = useState([]);
