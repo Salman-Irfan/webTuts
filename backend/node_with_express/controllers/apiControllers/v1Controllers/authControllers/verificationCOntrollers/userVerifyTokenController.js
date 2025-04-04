@@ -29,7 +29,7 @@ export const userVerifyTokenController = async (req, res) => {
         // if success, update the verified field of user
         await User.updateOne(
             { _id: user._id },
-            { $set: { verified: true } }
+            { $set: { isVerified: true } }
         );
 
         // Remove the token from the database

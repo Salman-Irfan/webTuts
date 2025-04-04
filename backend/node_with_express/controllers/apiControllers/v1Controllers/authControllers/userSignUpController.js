@@ -40,8 +40,11 @@ export const userSignUpController = async (req, res) => {
     // making url
     // making url
     const url = `${process.env.NODE_BASE_URL}${process.env.APIV1}/users/${user._id}/verify/${token.token}`
+    const emailBody = `you registered in our app <h2>MERN Tutorials</h2> with this email ${email}. If it were you then please click on this link to verify your account. : ${url} 
+    and if you didn't make account in our app, ignore this email. or please let us know why did this happen
+    `
     // sending email
-    await sendEmail(user.email, 'Verify Email', url);
+    await sendEmail(user.email, 'Verify Email', emailBody);
     try {
         return res.json({
             success: true,

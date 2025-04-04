@@ -17,6 +17,13 @@ export const userLoginController = async (req, res) => {
             })
         }
         // decrypt the password
+        console.log(existingUser)
+        if(!existingUser.isVerified){
+            return res.json({
+                success: true,
+                message: `email ${email} not verified. please first verify your email and then come back to login`
+            })
+        }
         const passwordCompare = await bcrypt.compareSync(password, existingUser.password);
         if (!passwordCompare) {
             return res.json({
@@ -25,6 +32,7 @@ export const userLoginController = async (req, res) => {
             });
         }
         // if both email and password are correct, assign token
+
         const authtoken = jwt.sign({ email: existingUser.email }, process.env.JWT_SECRET);
         return res.json({
             success: true,

@@ -5,7 +5,7 @@ const userSchema = new Schema({
     name: String, // String is shorthand for {type: String}
     email: String, // String is shorthand for {type: String}
     password: String,
-    verified: {
+    isVerified: {
         type: Boolean,
         default: false
     }
