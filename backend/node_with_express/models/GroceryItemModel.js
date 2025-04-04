@@ -7,6 +7,8 @@ const groceryItemSchema = new Schema({
     quantity: String,
     price: Number,
     discount: String,
+}, {
+    timestamps: true
 });
 
 export const GroceryItem = mongoose.model('GroceryItem', groceryItemSchema);
