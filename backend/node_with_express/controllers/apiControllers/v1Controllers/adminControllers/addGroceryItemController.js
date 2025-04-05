@@ -17,6 +17,7 @@ export const addGroceryItemController = async (req, res) => {
             suceess: true,
             data: groceryAdded
         })
+        
     } catch (error) {
         console.log(error)
         return res.json({
