@@ -2,18 +2,23 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    name: String, // String is shorthand for {type: String}
+    name: String,
     email: {
         type: String,
         required: true,
         unique: true,
-        lowercase: true, // ensures it's stored in lowercase
+        lowercase: true,
         trim: true
-    }, // String is shorthand for {type: String}
+    },
     password: String,
     isVerified: {
         type: Boolean,
         default: false
+    },
+    roles: {
+        type: [String],
+        default: ['user'],
+        enum: ['user', 'vendor', 'buyer', 'admin'] // Limit to known roles
     }
 }, {
     timestamps: true

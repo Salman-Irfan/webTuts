@@ -44,7 +44,7 @@ export const userSignUpController = async (req, res) => {
     and if you didn't make account in our app, ignore this email. or please let us know why did this happen
     `
     // sending email
-    await sendEmail(user.email, 'Verify Email', emailBody);
+    // await sendEmail(user.email, 'Verify Email', emailBody);
     try {
         return res.json({
             success: true,
