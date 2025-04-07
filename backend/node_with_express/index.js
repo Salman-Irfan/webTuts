@@ -13,6 +13,10 @@ connectToMongoDb()
 
 app.use(cors())
 app.use(express.json())
+// add middleware to parse form data instead of JSON
+app.use(express.urlencoded({ extended: true }));
+// use a static folder
+app.use(express.static('public'));
 
 app.use(`/api`, apiRouter)
 
